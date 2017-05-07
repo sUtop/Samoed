@@ -11,25 +11,27 @@
 
 namespace samoServer {
 
-  template <T> 
+  template <class T> 
   class MessageList {
-    std::priority_queue<T,std::vector<T>,T.less> list; 
+    std::priority_queue<T> list; 
   protected:
-    virtual T& recieve() {
+    virtual int recieve(T& in) {
 #ifdef DEBUG
       std::cerr << "interfase call recieve\n";
       assert(0);
-#endif 
+#endif
+    return 0;
     };
-    virtual void send(T&) {
+    virtual int send(T& out) {
 #ifdef DEBUG
       std::cerr << "interfase call send\n";
       assert(0);
-#endif 
+#endif
+    return 0;
     };
   public:
     MessageList() = delete;
-  }
+  };
 
 }
 

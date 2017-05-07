@@ -9,7 +9,7 @@ namespace samoServer {
 
   typedef std::uint64_t time_date_type;
   typedef std::uint64_t flag_type;
-  typedef std::char16_t char_type;
+  typedef std::uint16_t char_type;
   typedef std::uint64_t data_type;
   typedef std::uint64_t objectID_type;
   typedef double        pos_type;
@@ -22,7 +22,7 @@ namespace samoServer {
     char_type      sender[16];
     char_type      reciever[16];
     flag_type      flags; 
-  }
+  };
 
   struct TMessIn {
     enum {
@@ -35,8 +35,8 @@ namespace samoServer {
     objectID_type  objectID; // < id of bus
     data_type      data;     // < payload (some useful data)
     location_type  location; // < current location of bus
-    TMessIn_type   type;     // < type of message 
-  } 
+    data_type      type;     // < type of message 
+  };
 
   struct TMessOut {
     enum {
@@ -47,12 +47,12 @@ namespace samoServer {
     } TMessOut_type;
     objectID_type objectID;
     data_type     data;
-    TMessOut_type type;
-  }
+    data_type type;
+  };
 
   struct DBMess {
     std::vector<WebMess> data; // < messages from data base may be variable size
-  }
+  };
 }
 
 #endif

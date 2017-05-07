@@ -1,36 +1,40 @@
 #include "messagelist.h"
-#inlcude "socet.h"
+#include "socet.h"
 
-#ifndef TELEMETRYMESSAGELIST_H telemetrymessagelist.h 
+#ifndef TELEMETRYMESSAGELIST_H 
 #define TELEMETRYMESSAGELIST_H
 
 namespace samoServer {
 
-  template <class T>
-  class TelemetryMessageList : 
+  // !!! functions that differ only in their return type cannot be overloaded 
+
+
+    class TelemetryMessageList : 
           public Socet, 
           public MessageList<TMessIn>, 
           public MessageList<TMessOut> {
     
-    TMessIn& recieve() override
+    int recieve(TMessIn& in) override
     {
 #ifdef DEBUG
       std::cerr << "TelemetryMessageList call TMessIn recieve\n";
-#endif 
+#endif
+    return 0; 
     }
-    TMessOut& recieve() override
+    int recieve(TMessOut& out) override
     {
 #ifdef DEBUG
       std::cerr << "TelemetryMessageList call TMessOut recieve\n";
-#endif 
+#endif
+    return 0; 
     }
-    void send(TMessIn& ) override
+    int send(TMessIn& ) override
     {
     }
-    void send(TMessOut& ) override
+    int send(TMessOut& ) override
     {
     }
-  }
+  };
 
 }
 #endif

@@ -3,6 +3,8 @@
 #include <string>
 #include <atomic>
 
+#include "messageTypes.h"
+
 #ifndef SOCET_H
 #define SOCET_H
 
@@ -26,13 +28,13 @@ namespace samoServer {
     std::atomic_flag lock = ATOMIC_FLAG_INIT;
   public:
     // return 0 if open correctly
-    int open(socet_type t, std::string address);
+    int open(data_type socet_type, std::string address);
     // return 0 if close correctly
     int close();
   protected:
     // send  raw data to socet
-    send(void* data, size_t size);
-  }
+    int send(void* data, size_t size);
+  };
 }
 
 #endif
