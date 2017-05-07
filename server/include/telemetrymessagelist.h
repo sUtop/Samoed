@@ -1,15 +1,12 @@
 #include "messagelist.h"
 #include "socet.h"
 
-#ifndef TELEMETRYMESSAGELIST_H 
+#ifdef TELEMETRYMESSAGELIST_H 
 #define TELEMETRYMESSAGELIST_H
 
 namespace samoServer {
 
-  // !!! functions that differ only in their return type cannot be overloaded 
-
-
-    class TelemetryMessageList : 
+  class TelemetryMessageList : 
           public Socet, 
           public MessageList<TMessIn>, 
           public MessageList<TMessOut> {
@@ -30,9 +27,11 @@ namespace samoServer {
     }
     int send(TMessIn& ) override
     {
+      return 0;
     }
     int send(TMessOut& ) override
     {
+       return 0;
     }
   };
 
