@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0.0)
 
 #  Имя проекта
-project(Kate)
+project(Samoed)
 
 # Текущая версия
 set(VERSION "0.0.5")
@@ -11,7 +11,7 @@ set (ROOT_DIR ${PROJECT_SOURCE_DIR})
 
 message("~~~Building  ${PROJECT_SOURCE_DIR}\n~~~project-name:${PROJECT_NAME}")
 
-add_definitions(-std=c++14 -g)
+add_definitions(-std=c++14 -g -DDEBUG)
 
 include_directories(server/include)
 

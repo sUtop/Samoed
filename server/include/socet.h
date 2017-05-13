@@ -3,7 +3,7 @@
 #include <string>
 #include <atomic>
 
-#include "messageTypes.h"
+#include "server_types.h"
 
 #ifndef SOCET_H
 #define SOCET_H

@@ -1,7 +1,7 @@
-#include "messagelist.h"
+#include "meslist.h"
 #include "socet.h"
 
-#ifdef TELEMETRYMESSAGELIST_H 
+#ifndef TELEMETRYMESSAGELIST_H 
 #define TELEMETRYMESSAGELIST_H
 
 namespace samoServer {

@@ -14,16 +14,19 @@ namespace samoServer {
   typedef std::uint64_t objectID_type;
   typedef double        pos_type;
 
+  const int WEB_NAME_SIZE = 16;
   typedef std::pair<pos_type,pos_type>  location_type;
 
+  // One message from/to web
   struct WebMess {
     time_date_type timeDate;
     data_type      data[4];
-    char_type      sender[16];
-    char_type      reciever[16];
+    char_type      sender[WEB_NAME_SIZE];
+    char_type      reciever[WEB_NAME_SIZE];
     flag_type      flags; 
   };
 
+  // One message from object
   struct TMessIn {
     enum {
       CHANGE_COUNT = 1,
@@ -38,6 +41,7 @@ namespace samoServer {
     data_type      type;     // < type of message 
   };
 
+  // One message to object 
   struct TMessOut {
     enum {
       ASK_LOCATION = 1,
@@ -50,8 +54,16 @@ namespace samoServer {
     data_type type;
   };
 
-  struct DBMess {
-    std::vector<WebMess> data; // < messages from data base may be variable size
+  // One Data Base line for file
+  struct DBLine {
+    std::time_t time;
+    objectID_type id;
+    data_type data[6]; 
+  };
+  
+  // Header for db file
+  // TODO fill header
+  struct DBHeader {
   };
 }
 

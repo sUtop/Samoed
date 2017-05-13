@@ -1,7 +1,7 @@
-#include "messagelist.h"
+#include "meslist.h"
 #include "socet.h"
 
-#ifdef  WEBMESSAGE_LIST_H
+#ifndef  WEBMESSAGE_LIST_H
 #define WEBMESSAGE_LIST_H
 
 namespace samoServer {
@@ -21,4 +21,5 @@ namespace samoServer {
     }
   };
 
+};
 #endif

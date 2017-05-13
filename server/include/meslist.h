@@ -4,17 +4,21 @@
 #include <cassert>
 #include <queue>
 
-#include "messageTypes.h"
+#include "server_types.h"
 
 #ifndef MESSAGE_LIST_H
 #define MESSAGE_LIST_H
 
 namespace samoServer {
 
+  /* *\brief Класс-шаблон для отправки и получения сообщений
+   */
   template <class T> 
   class MessageList {
     std::priority_queue<T> list; 
   protected:
+    /* *\brief Получение сообщения
+     */
     virtual int recieve(T& in) {
 #ifdef DEBUG
       std::cerr << "interfase call recieve\n";
@@ -22,6 +26,8 @@ namespace samoServer {
 #endif
     return 0;
     };
+    /* *\brief Отправка сообщений
+     */
     virtual int send(T& out) {
 #ifdef DEBUG
       std::cerr << "interfase call send\n";
