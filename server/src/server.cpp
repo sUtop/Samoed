@@ -1,5 +1,5 @@
 /*
- file : telbdshed.h
+ file : server.cpp
     Copyright (c) 2017 Gorban Igor Utop@inbox.ru
 
     This program is free software: you can redistribute it and/or modify
@@ -18,27 +18,24 @@
 */
 
 
-#include "meslist.h"
-#include "io.h"
+#include <iostream>
+#include <thread>
+#include <ctime>
 
-#ifndef TELBDSHED_H
-#define TELBDSHED_H
+#include "server_types.h"
+const std::chrono::nanoseconds sleep_time(10);
 
-namespace samoServer {
-  class DataBaseMessageList : public io, public MessageList<DBLine> {
-    int recieve(DBLine& in) {
-#ifdef DEBUG
-      std::cerr << "DataBaseMessageList call recieve\n";
-#endif
-    return 0;
-    };
-    int send(DBLine& out) {
-#ifdef DEBUG
-      std::cerr << "DataBaseMessageList call send\n";
-#endif
-    return 0;
-    };
-  }; 
-  
+using namespace samoServer;
+
+int main()
+{
+  std::cout << " Size of TMessIn  " << sizeof(TMessIn) << "\n"; 
+  std::cout << " Size of WebMess  " << sizeof(WebMess) << "\n"; 
+  std::cout << " Size of TMessOut " << sizeof(TMessOut) << "\n"; 
+  std::cout << " Size of location_type " << sizeof(location_type) << " = 2 * " << sizeof(pos_type) << "\n"; 
+  std::cout << " Size of time_t " << sizeof(std::time_t) << "\n";
+  std::cout << " Size of IDObject " << sizeof( objectID_type) << "\n";
+  std::cout << " Size of DBLine " << sizeof( DBLine) << "\n"; 
+  return 0;
 }
-#endif
+
