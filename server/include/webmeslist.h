@@ -17,13 +17,11 @@
 
 */
 
-
-
-#include "meslist.h"
-#include "socet.h"
-
 #ifndef WEBMESLIST_H
 #define WEBMESLIST_H
+
+#include "meslist.h"
+#include "socket.h"
 
 namespace samoServer {
 

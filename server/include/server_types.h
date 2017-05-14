@@ -17,13 +17,11 @@
 
 */
 
+#ifndef SERVER_TYPES_H
+#define SERVER_TYPES_H
 
 #include <cstdint>
 #include <ctime>
-#include <vector>
-
-#ifndef SERVER_TYPES_H
-#define SERVER_TYPES_H
 
 namespace samoServer {
 

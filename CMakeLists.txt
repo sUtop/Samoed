@@ -27,10 +27,12 @@ set(VERSION "0.0.5")
 set (ROOT_DIR ${PROJECT_SOURCE_DIR})
 
 set( SRC 
-     server/src/tmeslist.cpp
-     server/src/databasemessagelist.cpp
-     server/src/webmeslist.cpp
+     server/src/dbmeslist.cpp
      server/src/server.cpp
+     server/src/socket.cpp
+     server/src/telbdshed.cpp
+     server/src/tmeslist.cpp
+     server/src/webmeslist.cpp
 )
 
 
@@ -58,4 +60,8 @@ include_directories(${Boost_INCLUDE_DIR})
 add_executable(samoed_server ${SRC})
 
 target_link_libraries(samoed_server ${Boost_LIBRARIES})
+
+add_executable(telemetry_spamer server/tests/telemetry_spamer.cpp)
+
+target_link_libraries(telemetry_spamer ${Boost_LIBRARIES})
 

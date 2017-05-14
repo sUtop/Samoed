@@ -17,12 +17,11 @@
 
 */
 
+#ifndef DMESLIST_H
+#define DMESLIST_H
 
 #include "meslist.h"
 #include "io.h"
-
-#ifndef DMESLIST_H
-#define DMESLIST_H
 
 namespace samoServer {
   class DataBaseMessageList : public io, public MessageList<DBLine> {

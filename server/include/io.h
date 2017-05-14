@@ -17,14 +17,13 @@
 
 */
 
+#ifndef IO_H
+#define IO_H
 
 #include <iostream>
 #include <fstream>
 
 #include "server_types.h"
-
-#ifndef IO_H
-#define IO_H
 
 namespace samoServer { 
   

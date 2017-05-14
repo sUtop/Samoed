@@ -17,6 +17,8 @@
 
 */
 
+#ifndef MESLIST_H
+#define MESLIST_H
 
 #include <iostream>
 #include <chrono>
@@ -25,9 +27,6 @@
 #include <queue>
 
 #include "server_types.h"
-
-#ifndef MESLIST_H
-#define MESLIST_H
 
 namespace samoServer {
 

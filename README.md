@@ -6,3 +6,6 @@ The project is under GNU GPL 3 license.
 
 In designing UML diagrams used StarUML. For the build, use make (or cmake may be).
 Also used boost library.
+
+WARNING! 
+Server works in super-user mode.

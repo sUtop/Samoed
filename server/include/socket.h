@@ -1,5 +1,5 @@
 /*
- file : socet.h
+ file : socket.h
     Copyright (c) 2017 Gorban Igor Utop@inbox.ru
 
     This program is free software: you can redistribute it and/or modify
@@ -17,16 +17,17 @@
 
 */
 
+#ifndef SOCKET_H
+#define SOCKET_H
 
-#include <sys/types.h>
-#include <sys/socket.h>
 #include <string>
 #include <atomic>
-
 #include "server_types.h"
 
-#ifndef SOCET_H
-#define SOCET_H
+// Use boost library 
+// Copyright (c) 2003-2017 Christopher M. Kohlhoff (chris at kohlhoff dot com)
+#include <boost/asio.hpp>
+using boost::asio::ip::tcp;
 
 namespace samoServer {
   // List of types to connect
@@ -44,15 +45,21 @@ namespace samoServer {
 
   class Socet {
     // Atomic flag for using socets in different treds
-    std::atomic_flag lock = ATOMIC_FLAG_INIT;
-  public:
+    std::atomic_int m_lock;
+    boost::asio::io_service m_io_service;
+    tcp::endpoint m_endpoint;
+    tcp::acceptor m_acceptor;
+    tcp::socket m_socket;
+  protected:
     // return 0 if open correctly
     int open(data_type socet_type, std::string address);
-    // return 0 if close correctly
-    int close();
-  protected:
     // send  raw data to socet
-    int send(void* data, size_t size);
+    int send(void* data, std::size_t size);
+    int receive(void* data, std::size_t &size);
+  public:
+     typedef void (*call_funct)(boost::system::error_code ec);
+    // Start send/reciev data to server
+     void run(call_funct);
   };
 }
 
