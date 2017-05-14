@@ -6,8 +6,8 @@
 
 #include "server_types.h"
 
-#ifndef MESSAGE_LIST_H
-#define MESSAGE_LIST_H
+#ifndef MESLIST_H
+#define MESLIST_H
 
 namespace samoServer {
 

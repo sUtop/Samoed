@@ -1,8 +1,8 @@
 #include "meslist.h"
 #include "io.h"
 
-#ifndef DMESLIST_H
-#define DMESLIST_H
+#ifndef TELBDSHED_H
+#define TELBDSHED_H
 
 namespace samoServer {
   class DataBaseMessageList : public io, public MessageList<DBLine> {
@@ -22,5 +22,3 @@ namespace samoServer {
   
 }
 #endif
-
-

@@ -9,7 +9,6 @@
 #define SOCET_H
 
 namespace samoServer {
-
   // List of types to connect
   enum {
     WEB_CLIENT = 1,

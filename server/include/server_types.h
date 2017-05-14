@@ -2,8 +2,8 @@
 #include <ctime>
 #include <vector>
 
-#ifndef MESSAGE_TYPES_H
-#define MESSAGE_TYPES_H
+#ifndef SERVER_TYPES_H
+#define SERVER_TYPES_H
 
 namespace samoServer {
 

@@ -1,8 +1,8 @@
 #include "meslist.h"
 #include "socet.h"
 
-#ifndef  WEBMESSAGE_LIST_H
-#define WEBMESSAGE_LIST_H
+#ifndef WEBMESLIST_H
+#define WEBMESLIST_H
 
 namespace samoServer {
 
