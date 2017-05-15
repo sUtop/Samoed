@@ -15,7 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-*/
+ */
 
 #ifndef SOCKET_H
 #define SOCKET_H
@@ -30,37 +30,33 @@
 using boost::asio::ip::tcp;
 
 namespace samoServer {
-  // List of types to connect
-  enum {
-    WEB_CLIENT = 1,
-    WEB_SERWER,
-    DRIVER,      // Bus driver, not os-driver.
-    INCORRECT_TYPE
-  } socet_type;
+    // List of types to connect
+    enum {
+        WEB_CLIENT = 1,
+        WEB_SERVER,
+        DRIVER_SERVER, // Bus driver, not os-driver.
+        INCORRECT_TYPE
+    } socket_type;
 
-  enum {
-    READY = 0,
-    READ
-  } socet_status;
-
-  class Socet {
-    // Atomic flag for using socets in different treds
-    std::atomic_int m_lock;
-    boost::asio::io_service m_io_service;
-    tcp::endpoint m_endpoint;
-    tcp::acceptor m_acceptor;
-    tcp::socket m_socket;
-  protected:
-    // return 0 if open correctly
-    int open(data_type socet_type, std::string address);
-    // send  raw data to socet
-    int send(void* data, std::size_t size);
-    int receive(void* data, std::size_t &size);
-  public:
-     typedef void (*call_funct)(boost::system::error_code ec);
-    // Start send/reciev data to server
-     void run(call_funct);
-  };
+    class Socket {
+        // Atomic flag for using sockets in different treds
+        std::atomic_int m_lock;
+        boost::asio::io_service m_io_service;
+        tcp::endpoint m_endpoint = tcp::endpoint(tcp::v4(), 0);
+        tcp::acceptor m_acceptor = tcp::acceptor(m_io_service, m_endpoint);
+        tcp::socket m_socket = tcp::socket(m_io_service);
+    protected:
+        Socket(){}; 
+        // return 0 if open correctly
+        int open(data_type socket_type);
+        // send  raw data to socket
+        int send(void* data, std::size_t size);
+        int receive(void* data, std::size_t &size);
+    public:
+        virtual void connect();
+        // Start send/reciev data to server ( use lambdas ! )
+        void run();
+    };
 }
 
 #endif

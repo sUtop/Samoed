@@ -15,10 +15,45 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-*/
+ */
 
 
 
 #include "tmeslist.h"
 
 
+samoServer::TelemetryMessageList::TelemetryMessageList()
+{
+     Socket::open(DRIVER_SERVER);
+};
+
+int samoServer::TelemetryMessageList::recieve(TMessIn& in) {
+#ifdef DEBUG
+    std::cerr << "TelemetryMessageList call TMessIn recieve\n";
+#endif
+    return 0;
+}
+
+int samoServer::TelemetryMessageList::recieve(TMessOut& out) {
+#ifdef DEBUG
+    std::cerr << "TelemetryMessageList call TMessOut recieve\n";
+#endif
+    return 0;
+}
+
+int samoServer::TelemetryMessageList::send(TMessIn&) {
+    return 0;
+}
+
+int samoServer::TelemetryMessageList::send(TMessOut&) {
+    return 0;
+}
+
+void samoServer::TelemetryMessageList::connect()
+{
+#ifdef DEBUG
+    std::cout << " connect telemetry \n" ;
+#endif
+    
+};
+  

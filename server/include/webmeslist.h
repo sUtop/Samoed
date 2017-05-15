@@ -15,7 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-*/
+ */
 
 #ifndef WEBMESLIST_H
 #define WEBMESLIST_H
@@ -25,20 +25,19 @@
 
 namespace samoServer {
 
-  class WebMessageList : public Socet, public MessageList<WebMess> {
-    
-    int recieve(WebMess& in) override
-    {
+    class WebMessageList : public Socket, public MessageList<WebMess> {
+
+        int recieve(WebMess& in) override {
 #ifdef DEBUG
-      std::cerr << "TelemetryMessageList call TMessIn recieve\n";
+            std::cerr << "TelemetryMessageList call TMessIn recieve\n";
 #endif
-      return 0; 
-    }
-    int send(WebMess& ) override
-    {
-      return 0;
-    }
-  };
+            return 0;
+        }
+
+        int send(WebMess&) override {
+            return 0;
+        }
+    };
 
 };
 #endif

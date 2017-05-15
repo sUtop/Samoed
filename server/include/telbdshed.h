@@ -15,7 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-*/
+ */
 
 #ifndef TELBDSHED_H
 #define TELBDSHED_H
@@ -24,23 +24,25 @@
 #include "io.h"
 
 namespace samoServer {
-  class DataBaseMessageList : public io, public MessageList<DBLine> {
-    int recieve(DBLine& in) {
+
+    class DataBaseMessageList : public io, public MessageList<DBLine> {
+
+        int recieve(DBLine& in) {
 #ifdef DEBUG
-      std::cerr << "DataBaseMessageList call recieve\n";
+            std::cerr << "DataBaseMessageList call recieve\n";
 #endif
-//      recieve(in,sizeof(in));
-      return 0;
+            //      recieve(in,sizeof(in));
+            return 0;
+        };
+
+        int send(DBLine& out) {
+#ifdef DEBUG
+            std::cerr << "DataBaseMessageList call send\n";
+#endif
+            return 0;
+        };
+
     };
 
-    int send(DBLine& out) {
-#ifdef DEBUG
-      std::cerr << "DataBaseMessageList call send\n";
-#endif
-      return 0;
-    };
-    
-  }; 
-  
 }
 #endif

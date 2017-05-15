@@ -15,13 +15,14 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-*/
+ */
 
 #include <iostream>
 #include "socket.h"
 
-int samoServer::Socet::open(data_type socet_type, std::string address)
-{
+using namespace samoServer;
+
+int samoServer::Socket::open(data_type socket_type) {
     m_lock = 0;
     m_endpoint = tcp::endpoint(tcp::v4(), 777);
     m_acceptor = tcp::acceptor(m_io_service, m_endpoint);
@@ -29,51 +30,54 @@ int samoServer::Socet::open(data_type socet_type, std::string address)
     return 0;
 };
 
-// send  raw data to socet
-int samoServer::Socet::send(void* data, size_t size)
-{
+// send  raw data to socket
+
+int samoServer::Socket::send(void* data, size_t size) {
     bool send = false;
-    while (!send)
-    {
+    while (!send) {
         m_lock++;
-        if (m_lock < 2)
-        {
+        if (m_lock < 2) {
             // message = data
             // awaiting for callback
 #ifdef DEBUG
-            std::cout << " Sendet! " << data << "\n" ; 
+            std::cout << " Sendet! " << data << "\n";
 #endif
             send = true;
-        } 
+        }
         m_lock--;
     }
     return 0;
 };
 
-int samoServer::Socet::receive(void* data, std::size_t &size)
-{
+int samoServer::Socket::receive(void* data, std::size_t &size) {
     bool receive = false;
-    while (!receive)
-    {
+    while (!receive) {
         m_lock++;
-        if (m_lock < 2)
-        {
+        if (m_lock < 2) {
             // data = message
             // awaiting for callback
 #ifdef DEBUG
-            std::cout << " Received! " << data << "\n" ;
+            std::cout << " Received! " << data << "\n";
 #endif
             receive = true;
-        } 
+        }
         m_lock--;
     }
     return 0;
 };
 
-void samoServer::Socet::run(call_funct f)
-{
-    boost::system::error_code ec;
-    m_acceptor.async_accept(m_socket, f);
+void samoServer::Socket::run() {
+    m_acceptor.async_accept(m_socket, [this](boost::system::error_code ec)
+    {
+        connect();
+    });
     // detach and awaiting to connections :
     m_io_service.run();
+};
+
+void samoServer::Socket::connect()
+{
+#ifdef DEBUG
+    std::cout << " connect base \n";
+#endif
 };

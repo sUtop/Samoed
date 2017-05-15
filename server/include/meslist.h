@@ -15,7 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-*/
+ */
 
 #ifndef MESLIST_H
 #define MESLIST_H
@@ -30,33 +30,33 @@
 
 namespace samoServer {
 
-  /* *\brief Класс-шаблон для отправки и получения сообщений
-   */
-  template <class T> 
-  class MessageList {
-    std::priority_queue<T> list; 
-  protected:
-    /* *\brief Получение сообщения
+    /* *\brief Класс-шаблон для отправки и получения сообщений
      */
-    virtual int recieve(T& in) {
+    template <class T>
+    class MessageList {
+        std::priority_queue<T> list;
+    protected:
+
+        /* *\brief Получение сообщения
+         */
+        virtual int recieve(T& in) {
 #ifdef DEBUG
-      std::cerr << "interfase call recieve\n";
-      assert(0);
+            std::cerr << "interfase call recieve\n";
+            assert(0);
 #endif
-    return 0;
-    };
-    /* *\brief Отправка сообщений
-     */
-    virtual int send(T& out) {
+            return 0;
+        };
+
+        /* *\brief Отправка сообщений
+         */
+        virtual int send(T& out) {
 #ifdef DEBUG
-      std::cerr << "interfase call send\n";
-      assert(0);
+            std::cerr << "interfase call send\n";
+            assert(0);
 #endif
-    return 0;
+            return 0;
+        };
     };
-  public:
-    MessageList() = delete;
-  };
 
 }
 
