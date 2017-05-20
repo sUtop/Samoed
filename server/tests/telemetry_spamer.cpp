@@ -45,7 +45,7 @@ public:
     };
 
     chat_message()
-        : body_length_(0) { }
+        : body_length_(0) , data_ {} { }
 
     const char* data() const {
         return data_;
