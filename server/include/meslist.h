@@ -64,7 +64,13 @@ namespace samoServer {
 
     public:
 
-        virtual int execute() = delete;
+        virtual void execute()
+        {
+#ifdef DEBUG
+            std::cerr << "execute call recieve\n";
+            assert(0);
+#endif
+        };
         
         /* *\brief Получение сообщения
          */

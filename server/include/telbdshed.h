@@ -54,23 +54,6 @@ namespace samoServer {
             
         }
         
-        
-        
-        int recieve(DBLine& in) {
-#ifdef DEBUG
-            std::cerr << "DataBaseMessageList call recieve\n";
-#endif
-            //      recieve(in,sizeof(in));
-            return 0;
-        };
-
-        int send(DBLine& out) {
-#ifdef DEBUG
-            std::cerr << "DataBaseMessageList call send\n";
-#endif
-            return 0;
-        };
-
     };
 
 }

@@ -1,5 +1,5 @@
 /*
- file : dbmeslist.h
+ file : webbdshed.h
     Copyright (c) 2017 Gorban Igor Utop@inbox.ru
 
     This program is free software: you can redistribute it and/or modify
@@ -17,46 +17,53 @@
 
  */
 
-#ifndef DMESLIST_H
-#define DMESLIST_H
+#ifndef WEBBDSHED_H
+#define	WEBBDSHED_H
+
 
 #include "meslist.h"
 #include "io.h"
+#include "dbmeslist.h"
+#include "tmeslist.h"
+#include "webmeslist.h"
 
 namespace samoServer {
 
-    class DataBaseMessageList : public io, public MessageList<DBLine> {
+    class WebDBShed {
+        MessageList<WebMess> * WebList;
+        MessageList<DBLine> * BdList;
     public:
 
-        DataBaseMessageList() {
-        };
-        void execute() override
-        {
-#ifdef DEBUG
-            std::cerr << "execute DB Mess \n";
-#endif
-            while(1)
-            {
+        MessageList() {
+            WebList = new WebMessageList();
+            BdList = new DataBaseMessageList();
+        }
+
+        void run() {
+            std::thread web([&] {
+                WebList->execute();
+            });
+            std::thread bd([&] {
+                BdList->execute();
+            });
+
+            web.detach();
+            bd.detach();
+            while (1) {
                 std::this_thread::sleep_for(std::chrono::seconds(2));
+#ifdef DEBUG
+                std::cerr << "MessageList tick\n";
+#endif                
             }
-        };
 
-        int recieve(DBLine& in) override {
-#ifdef DEBUG
-            std::cerr << "DataBaseMessageList call recieve\n";
-#endif
-            return 0;
-        };
+        }
 
-        int send(DBLine& out) override {
-#ifdef DEBUG
-            std::cerr << "DataBaseMessageList call send\n";
-#endif
-            return 0;
-        };
+
     };
 
 }
-#endif
 
+
+
+#endif	/* WEBBDSHED_H */
 

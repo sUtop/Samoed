@@ -32,6 +32,17 @@ namespace samoServer {
     public:
         TelemetryMessageList();
         void connect() override;
+        void execute() override
+        {
+#ifdef DEBUG
+            std::cerr << "execute Telemetry list\n";
+#endif
+            while(1)
+            {
+                std::this_thread::sleep_for(std::chrono::seconds(2));                
+            }
+            
+        };
     protected:
         int recieve(TMessIn& in) override ;
         int recieve(TMessOut& out) override ;

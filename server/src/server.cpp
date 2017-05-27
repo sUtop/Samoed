@@ -35,13 +35,10 @@ using namespace samoServer;
 int main() {
     
     TelDBShed telBD;
-    // bd.run()
     std::thread tb_thread ( [&telBD] {telBD.run();});
     tb_thread.detach();
     
-    //TelemetryMessageList tmes;
-    //tmes.connect();
-    //tmes.run();
+#if 0
     std::cout << " Size of TMessIn  " << sizeof (TMessIn) << "\n";
     std::cout << " Size of WebMess  " << sizeof (WebMess) << "\n";
     std::cout << " Size of TMessOut " << sizeof (TMessOut) << "\n";
@@ -49,6 +46,13 @@ int main() {
     std::cout << " Size of time_t " << sizeof (std::time_t) << "\n";
     std::cout << " Size of IDObject " << sizeof ( objectID_type) << "\n";
     std::cout << " Size of DBLine " << sizeof ( DBLine) << "\n";
+#endif
+    
+    while(1)
+    {
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+    }
+    
     return 0;
 }
 
