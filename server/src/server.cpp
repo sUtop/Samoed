@@ -24,15 +24,24 @@
 
 #include "server_types.h"
 #include "tmeslist.h"
+
+#include "telbdshed.h"
+
 const std::chrono::nanoseconds sleep_time(10);
 
 using namespace samoServer;
 
 
 int main() {
-    TelemetryMessageList tmes;
-    tmes.connect();
-    tmes.run();
+    
+    TelDBShed telBD;
+    // bd.run()
+    std::thread tb_thread ( [&telBD] {telBD.run();});
+    tb_thread.detach();
+    
+    //TelemetryMessageList tmes;
+    //tmes.connect();
+    //tmes.run();
     std::cout << " Size of TMessIn  " << sizeof (TMessIn) << "\n";
     std::cout << " Size of WebMess  " << sizeof (WebMess) << "\n";
     std::cout << " Size of TMessOut " << sizeof (TMessOut) << "\n";

@@ -22,11 +22,40 @@
 
 #include "meslist.h"
 #include "io.h"
+#include "dbmeslist.h"
+#include "tmeslist.h"
 
 namespace samoServer {
 
-    class DataBaseMessageList : public io, public MessageList<DBLine> {
+    class TelDBShed {
+        // ! just receive messages - interface used just for receive mes :
+        MessageList<TMessIn> * TelList;
+        // 
+        MessageList<DBLine> * BdList;
 
+    public:
+
+        TelDBShed() {
+            TelList = new TelemetryMessageList();
+            BdList = new DataBaseMessageList();
+        }
+
+        void run()
+        {
+            std::thread tel([&]{TelList->execute();});
+            std::thread bd([&]{BdList->execute();});
+            
+            tel.detach();
+            bd.detach();
+            while (1)
+            {
+                std::this_thread::sleep_for(std::chrono::seconds(2));
+            }
+            
+        }
+        
+        
+        
         int recieve(DBLine& in) {
 #ifdef DEBUG
             std::cerr << "DataBaseMessageList call recieve\n";

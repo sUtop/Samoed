@@ -26,6 +26,10 @@
 namespace samoServer {
 
     class DataBaseMessageList : public io, public MessageList<DBLine> {
+    public:
+        
+        DataBaseMessageList() {
+        };
 
         int recieve(DBLine& in) {
 #ifdef DEBUG

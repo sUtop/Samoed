@@ -25,18 +25,47 @@
 #include <thread>
 #include <cassert>
 #include <queue>
+#include <mutex>
 
 #include "server_types.h"
 
 namespace samoServer {
 
+    template <class T>
+    struct List {
+
+        void put(T& t) {
+            mut.lock();
+            list.push(t);
+            mut.unlock();
+        }
+
+        int get(T& t) {
+            if (!list.empty()) {
+                mut.lock();
+                list.pop(t);
+                mut.unlock();
+                return 0;
+            }
+            return 1;
+        }
+
+    private:
+        std::vector<T> list;
+        std::mutex mut;
+    };
+
     /* *\brief Класс-шаблон для отправки и получения сообщений
      */
     template <class T>
     class MessageList {
-        std::priority_queue<T> list;
     protected:
+        List<T> list;
 
+    public:
+
+        virtual int execute() = delete;
+        
         /* *\brief Получение сообщения
          */
         virtual int recieve(T& in) {

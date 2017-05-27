@@ -41,7 +41,6 @@ namespace samoServer {
         int openDB(std::string filename);
         // close base return 0 if O.K.
         int close();
-        io() = delete;
     };
 
 }
